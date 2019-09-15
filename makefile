@@ -1,7 +1,8 @@
 # tex file without
 SOURCE = manuscript
 LATEX = pdflatex
-# latex = platex
+# LATEX = ptex2pdf
+# LATEX = platex
 
 defaults: diffpdf
 
