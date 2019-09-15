@@ -1,8 +1,6 @@
 # tex file without
-SOURCE = manuscript
-LATEX = pdflatex
-# LATEX = ptex2pdf
-# LATEX = platex
+RELATIVE_PATH = ./latexdiff_tool
+include $(RELATIVE_PATH)/settings.mk
 
 defaults: diffpdf
 
@@ -14,21 +12,24 @@ open: $(SOURCE)_diff.pdf
 diffpdf: $(SOURCE)_diff.pdf
 
 $(SOURCE)_diff.pdf: $(SOURCE)_diff.tex
-	$(LATEX) ${SOURCE}_diff
-	pbibtex ${SOURCE}_diff
-	$(LATEX) ${SOURCE}_diff
-	$(LATEX) ${SOURCE}_diff
+	$(LATEX) ${LATEX_OPT} ${SOURCE}_diff
+	$(BIBTEX) ${BIBTEX_OPT} ${SOURCE}_diff
+	$(LATEX) ${LATEX_OPT} ${SOURCE}_diff
+	$(LATEX) ${LATEX_OPT} ${SOURCE}_diff
 ifeq ($(LATEX),platex)
 	dvipdfmx $(SOURCE)_diff
 endif
 
 difftex: $(SOURCE)_diff.tex
 
-$(SOURCE)_diff.tex: $(SOURCE)_prev.tex $(SOURCE).tex ./latexdiff_tool/diffpreamble.tex
-	latexdiff -e utf8 --preamble=./latexdiff_tool/diffpreamble.tex $(SOURCE)_prev.tex $(SOURCE).tex > $(SOURCE)_diff.tex
+$(SOURCE)_diff.tex: $(SOURCE)_prev.tex $(SOURCE).tex ${RELATIVE_PATH}/diffpreamble.tex
+	latexdiff ${LATEXDIFF_OPT} --preamble=${RELATIVE_PATH}/diffpreamble.tex $(SOURCE)_prev.tex $(SOURCE).tex > $(SOURCE)_diff.tex
 
 prev:
 	cp $(SOURCE).tex $(SOURCE)_prev.tex
 
+$(RELATIVE_PATH)/settings.mk: $(RELATIVE_PATH)/settings.mk.sample
+	cp $(RELATIVE_PATH)/settings.mk.sample $(RELATIVE_PATH)/settings.mk
+
 clean:
-	rm $(SOURCE)_diff.*
+	rm -f $(SOURCE)_diff.tex

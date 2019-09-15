@@ -1,0 +1,12 @@
+SOURCE = manuscript
+
+LATEX = pdflatex
+#LATEX = platex
+#LATEX = ptex2pdf
+#LATEX_OPT=-l -ot -kanji=utf8 -synctex=1
+
+BIBTEX = bibtex
+#BIBTEX = pbibtex
+#BIBTEX_OPT=-kanji=utf8
+
+LATEXDIFF_OPT=-e utf8
