@@ -31,5 +31,13 @@ prev:
 $(RELATIVE_PATH)/settings.mk: $(RELATIVE_PATH)/settings.mk.sample
 	cp $(RELATIVE_PATH)/settings.mk.sample $(RELATIVE_PATH)/settings.mk
 
+rtf:
+	latex2rtf -E0 $(SOURCE)
+figrtf:
+	latex2rtf $(SOURCE)
+
+archive:
+	git archive HEAD --prefix=submit/ -o ../submit.zip
+
 clean:
 	rm -f $(SOURCE)_diff.tex
