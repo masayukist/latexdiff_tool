@@ -1,6 +1,6 @@
 # Latex Utilties
 
-comfortable latexdiff template
+Various utiltiy commands into one makefile for writing tex manuscript.
 
 ## usage
 
