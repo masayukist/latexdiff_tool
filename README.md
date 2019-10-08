@@ -1,6 +1,6 @@
 # Latex Utilties
 
-Various utiltiy commands into one makefile for writing tex manuscript.
+Various utility commands  for writing a tex manuscript into one makefile.
 
 ## usage
 
