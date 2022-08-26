@@ -1,12 +1,19 @@
 SOURCE = manuscript
 
-LATEX = pdflatex
-#LATEX = platex
+#LATEX = pdflatex
+LATEX = platex
 #LATEX = ptex2pdf
 #LATEX_OPT=-l -ot -kanji=utf8 -synctex=1
 
-BIBTEX = bibtex
-#BIBTEX = pbibtex
+#BIBTEX = bibtex
+BIBTEX = pbibtex
 #BIBTEX_OPT=-kanji=utf8
 
-LATEXDIFF_OPT=-e utf8
+TEXDIF_OPT=-e utf8 --force --exclude-textcmd="section,subsection,subsubsection,paragraph"
+TEXDIF_OPT+=--graphics-markup=none
+TEXDIF_OPT+=--preamble=${RELATIVE_PATH}/diffpreamble.tex
+#TEXDIF_OPT+=-t CFONT -f IDENTICAL
+#TEXDIF_OPT+=--exclude-textcmd="label,includegraphics"
+
+GIT_REV=5c207bcffb
+#GIT_REV=d5259c9de9
